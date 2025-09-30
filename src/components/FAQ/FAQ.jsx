@@ -327,12 +327,22 @@ cookies/логи - в объёме и сроки, необходимом для 
             <div className="sm:hidden space-y-4">
               {pricingData.map((row, index) => (
                 <div key={row.name} className="bg-white rounded-lg p-4 shadow-sm">
-                  <h4 className="font-semibold text-[#0023eb] mb-3 text-center">{row.name}</h4>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="bg-gradient-to-r from-[#0023eb] to-[#0073ff] text-white rounded-lg p-3 mb-4 text-center">
+                    <h4 className="font-semibold text-lg">{row.name}</h4>
+                  </div>
+                  <div className="space-y-3">
                     {pricingPeriods.map((period, periodIndex) => (
-                      <div key={period} className="flex justify-between items-center py-1">
-                        <span className="text-gray-600 text-xs">{period}</span>
-                        <span className="font-medium">{row.prices[periodIndex]}₽</span>
+                      <div key={period} className="bg-gray-50 rounded-lg p-3 border-l-4 border-[#0023eb]">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <div className="text-sm font-medium text-gray-900">{period}</div>
+                            <div className="text-xs text-gray-500 mt-1">период проживания</div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-xl font-bold text-[#0023eb]">{row.prices[periodIndex]}₽</div>
+                            <div className="text-xs text-gray-500">за сутки</div>
+                          </div>
+                        </div>
                       </div>
                     ))}
                   </div>

@@ -47,8 +47,7 @@ export function Navigation() {
             rel="noopener noreferrer" 
             className="btn-pulse-strong text-sm px-3 py-2 sm:text-base sm:px-4"
           >
-            <span className="hidden sm:inline">ЗАБРОНИРОВАТЬ</span>
-            <span className="sm:hidden">БРОНЬ</span>
+            ЗАБРОНИРОВАТЬ
           </Button>
         </div>
 

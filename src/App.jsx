@@ -93,6 +93,22 @@ export default function App() {
     
     let pathSegments = null;
 
+    // Check for room anchor links first (e.g., #standart-2-1)
+    if (hash && !hash.startsWith('#/view/')) {
+      const roomSlug = hash.slice(1); // Remove the #
+      const room = findRoomBySlug(roomSlug);
+      if (room) {
+        // Scroll to the room element after a short delay
+        setTimeout(() => {
+          const element = document.getElementById(roomSlug);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
+        return;
+      }
+    }
+
     // Check for fullscreen viewer paths
     if (pathname.startsWith('/view/room/') || pathname.startsWith('/view/gallery/')) {
       pathSegments = getPathSegments(pathname);

@@ -34,6 +34,11 @@ export function FullscreenViewer({
   const clampIndex = (n) => clamp(n, 0, imageCount - 1);
   
   const [currentIndex, setCurrentIndex] = useState(clampIndex(index));
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // Минимальное расстояние свайпа
+  const minSwipeDistance = 50;
 
   // Update index when props change
   useEffect(() => {
@@ -69,6 +74,31 @@ export function FullscreenViewer({
   const navigateNext = () => {
     if (imageCount > 1) {
       setCurrentIndex((prev) => (prev + 1) % imageCount);
+    }
+  };
+
+  // Обработчики свайпа
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && imageCount > 1) {
+      navigateNext();
+    }
+    if (isRightSwipe && imageCount > 1) {
+      navigatePrevious();
     }
   };
 
@@ -129,7 +159,10 @@ export function FullscreenViewer({
         <h1 className="sr-only">{title}</h1>
         
         <div 
-          className="relative grid place-items-center" 
+          className="relative grid place-items-center"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
           style={{ minHeight: '70vh' }}
         >
           <img 

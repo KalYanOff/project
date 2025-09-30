@@ -6,6 +6,7 @@
  */
 
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { LazyImage } from '../UI/LazyImage';
 import { Button } from '../UI/Button';
 import { Tag } from '../UI/Tag';
@@ -35,6 +36,11 @@ export function RoomCard({
   onOpenStandalone 
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // Минимальное расстояние свайпа
+  const minSwipeDistance = 50;
 
   // Navigation functions for image carousel
   const previousImage = () => {
@@ -43,6 +49,53 @@ export function RoomCard({
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  // Обработчики свайпа
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && hasMultipleImages) {
+      nextImage();
+    }
+    if (isRightSwipe && hasMultipleImages) {
+      previousImage();
+    }
+  };
+
+  // Функция копирования ссылки
+  const copyRoomLink = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const currentUrl = window.location.origin + window.location.pathname;
+    const roomUrl = `${currentUrl}#${slug}`;
+    
+    try {
+      await navigator.clipboard.writeText(roomUrl);
+      // Можно добавить уведомление об успешном копировании
+    } catch (err) {
+      // Fallback для старых браузеров
+      const textArea = document.createElement('textarea');
+      textArea.value = roomUrl;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+    }
   };
 
   // Check if we have multiple images for carousel controls
@@ -60,17 +113,23 @@ export function RoomCard({
   return (
     <div id={slug} className="rounded-2xl border bg-white shadow-sm overflow-hidden relative">
       {/* Anchor link for direct room navigation */}
-      <a 
-        href={`#${slug}`} 
+      <button
+        type="button"
+        onClick={copyRoomLink}
         className="absolute z-30 top-3 right-3 text-gray-400 hover:text-[#0023eb] pointer-events-auto bg-white/80 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center" 
-        aria-label="Ссылка на эту комнату"
+        aria-label="Скопировать ссылку на комнату"
       >
         🔗
-      </a>
+      </button>
 
       <div className="p-4">
         {/* Image carousel */}
-        <div className="relative">
+        <div 
+          className="relative"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           <LazyImage 
             src={currentImageSrc} 
             alt={currentImageAlt} 

@@ -39,15 +39,16 @@ export function Navigation() {
           />
         </a>
 
-        {/* Center booking button */}
-        <div className="hidden sm:flex justify-center">
+        {/* Booking button - always visible */}
+        <div className="flex justify-center">
           <Button 
             href={WHATSAPP_URL} 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="btn-pulse-strong"
+            className="btn-pulse-strong text-sm px-3 py-2 sm:text-base sm:px-4"
           >
-            ЗАБРОНИРОВАТЬ
+            <span className="hidden sm:inline">ЗАБРОНИРОВАТЬ</span>
+            <span className="sm:hidden">БРОНЬ</span>
           </Button>
         </div>
 
@@ -71,18 +72,6 @@ export function Navigation() {
       {/* Mobile menu dropdown */}
       {isMenuOpen && (
         <div className={`${CONTAINER} pb-4 grid gap-2 text-center`}>
-          {/* Mobile booking button */}
-          <div className="sm:hidden pb-2">
-            <Button 
-              href={WHATSAPP_URL} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="btn-pulse-strong w-full"
-            >
-              ЗАБРОНИРОВАТЬ
-            </Button>
-          </div>
-          
           <a href="#why" className={`${linkClassName} py-2`} onClick={closeMenu}>
             ПОЧЕМУ МЫ?
           </a>

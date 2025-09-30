@@ -45,7 +45,7 @@ export function WhyChooseUs({ embedded = false }) {
       {/* Toggle button */}
       <button 
         type="button" 
-        className="w-full flex items-center justify-center rounded-2xl border bg-white px-4 py-4 mt-6 mb-4" 
+        className="w-full flex items-center justify-center rounded-2xl border bg-white px-4 py-4 mt-6 mb-4 relative" 
         onClick={toggleOpen} 
         aria-expanded={isOpen} 
         aria-controls="why-panel"
@@ -53,7 +53,7 @@ export function WhyChooseUs({ embedded = false }) {
         <span className="text-center text-xl sm:text-2xl font-semibold">
           Почему Вы должны выбрать именно нас?
         </span>
-        <span className="absolute right-4 text-gray-500">
+        <span className="absolute right-4 text-gray-500 hidden sm:block">
           {isOpen ? "–" : "+"}
         </span>
       </button>
@@ -63,7 +63,7 @@ export function WhyChooseUs({ embedded = false }) {
         <div className={`${embedded ? '' : CONTAINER} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4`}>
           {features.map((feature, index) => (
             <div key={index} className="rounded-2xl border p-4 bg-white h-full">
-              <div className="flex items-start gap-3">
+              <div className="flex items-center gap-3">
                 <IconImage src={feature.icon} alt={feature.title} />
                 <div>
                   <h3 className="font-semibold text-left">{feature.title}</h3>

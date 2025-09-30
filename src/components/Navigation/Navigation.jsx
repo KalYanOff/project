@@ -70,7 +70,7 @@ export function Navigation() {
 
       {/* Mobile menu dropdown */}
       {isMenuOpen && (
-        <div className={`${CONTAINER} pb-4 grid gap-2`}>
+        <div className={`${CONTAINER} pb-4 grid gap-2 text-center`}>
           <a href="#why" className={`${linkClassName} py-2`} onClick={closeMenu}>
             ПОЧЕМУ МЫ?
           </a>

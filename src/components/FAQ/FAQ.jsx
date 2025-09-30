@@ -288,17 +288,18 @@ cookies/логи - в объёме и сроки, необходимом для 
         
         {/* Pricing FAQ */}
         <FAQItem question="Актуальные цены на 2025">
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-center text-sm">
+          <div className="overflow-x-auto bg-gray-50 rounded-xl p-4">
+            {/* Desktop table */}
+            <table className="hidden sm:table w-full border-collapse text-center text-sm bg-white rounded-lg overflow-hidden shadow-sm">
               <caption className="sr-only">Цены на проживание 2025</caption>
               
               {/* Table header */}
               <thead>
-                <tr className="bg-[#0023eb] text-white">
-                  <th className="text-left p-3 font-semibold">Категория</th>
+                <tr className="bg-gradient-to-r from-[#0023eb] to-[#0073ff] text-white">
+                  <th className="text-left p-4 font-semibold border-r border-white/20">Категория</th>
                   {pricingPeriods.map((period) => (
-                    <th key={period} className="p-3">
-                      <span className="block sm:rotate-[-12deg] italic font-semibold origin-center inline-block">
+                    <th key={period} className="p-4 border-r border-white/20 last:border-r-0">
+                      <span className="block font-semibold">
                         {period}
                       </span>
                     </th>
@@ -311,16 +312,33 @@ cookies/логи - в объёме и сроки, необходимом для 
                 {pricingData.map((row, index) => (
                   <tr 
                     key={row.name} 
-                    className={index % 2 ? 'bg-cyan-50' : 'bg-white'}
+                    className={index % 2 ? 'bg-blue-50/50' : 'bg-white'}
                   >
-                    <td className="text-left p-3 font-medium">{row.name}</td>
+                    <td className="text-left p-4 font-medium border-r border-gray-200">{row.name}</td>
                     {row.prices.map((price, priceIndex) => (
-                      <td key={priceIndex} className="p-3">{price}</td>
+                      <td key={priceIndex} className="p-4 border-r border-gray-200 last:border-r-0 font-medium">{price}₽</td>
                     ))}
                   </tr>
                 ))}
               </tbody>
             </table>
+            
+            {/* Mobile cards */}
+            <div className="sm:hidden space-y-4">
+              {pricingData.map((row, index) => (
+                <div key={row.name} className="bg-white rounded-lg p-4 shadow-sm">
+                  <h4 className="font-semibold text-[#0023eb] mb-3 text-center">{row.name}</h4>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    {pricingPeriods.map((period, periodIndex) => (
+                      <div key={period} className="flex justify-between items-center py-1">
+                        <span className="text-gray-600 text-xs">{period}</span>
+                        <span className="font-medium">{row.prices[periodIndex]}₽</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </FAQItem>
 

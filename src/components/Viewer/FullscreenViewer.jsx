@@ -101,10 +101,10 @@ export function FullscreenViewer({
   });
 
   return (
-    <div className="min-h-screen w-full bg-black text-white">
+    <div className="min-h-screen w-full bg-black text-white fixed inset-0 z-50 overflow-y-auto">
       
       {/* Header with navigation and booking */}
-      <div className={`${CONTAINER} py-3 flex items-center justify-between`}>
+      <div className={`${CONTAINER} py-3 flex items-center justify-between sticky top-0 bg-black/90 backdrop-blur-sm z-10`}>
         <a 
           href="#rooms" 
           onClick={(e) => { 

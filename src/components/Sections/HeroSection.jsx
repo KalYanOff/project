@@ -34,7 +34,7 @@ export function HeroSection() {
             <WhyChooseUs embedded />
 
             {/* Action buttons */}
-            <div className="mt-12 mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[520px]">
+            <div className="mt-12 mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[520px]">
               
               {/* Primary WhatsApp button */}
               <Button 
@@ -48,6 +48,7 @@ export function HeroSection() {
               </Button>
 
               {/* Secondary action buttons */}
+              <div className="col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Button 
                 href={`tel:${PHONE_TEL}`} 
                 className="no-pulse w-full"
@@ -66,6 +67,7 @@ export function HeroSection() {
               >
                 Как доехать
               </Button>
+              </div>
             </div>
           </div>
         </div>

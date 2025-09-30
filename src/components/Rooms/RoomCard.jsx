@@ -62,7 +62,7 @@ export function RoomCard({
       {/* Anchor link for direct room navigation */}
       <a 
         href={`#${slug}`} 
-        className="absolute z-30 top-3 right-3 text-gray-400 hover:text-[#0023eb] pointer-events-auto" 
+        className="absolute z-30 top-3 right-3 text-gray-400 hover:text-[#0023eb] pointer-events-auto bg-white/80 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center" 
         aria-label="Ссылка на эту комнату"
       >
         🔗

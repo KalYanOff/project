@@ -28,10 +28,10 @@ export function Navigation() {
   return (
     <nav className="z-50 bg-white border-b" role="navigation" aria-label="Главная навигация">
       {/* Main navigation bar */}
-      <div className={`${CONTAINER} h-[116px] grid grid-cols-3 items-center`}>
+      <div className={`${CONTAINER} h-[116px] flex items-center justify-between gap-2`}>
         
         {/* Logo */}
-        <a href="#top" className="flex items-center gap-2 no-underline">
+        <a href="#top" className="flex items-center gap-2 no-underline shrink-0">
           <img 
             src={LOGO_SRC || placeholderDataURI(220, 220, 'Логотип')} 
             alt="Логотип" 
@@ -40,7 +40,7 @@ export function Navigation() {
         </a>
 
         {/* Center booking button */}
-        <div className="flex justify-center">
+        <div className="hidden sm:flex justify-center">
           <Button 
             href={WHATSAPP_URL} 
             target="_blank" 
@@ -52,7 +52,7 @@ export function Navigation() {
         </div>
 
         {/* Mobile menu toggle */}
-        <div className="flex justify-end">
+        <div className="flex justify-end shrink-0">
           <button 
             onClick={toggleMenu} 
             aria-label="Открыть меню" 
@@ -71,6 +71,18 @@ export function Navigation() {
       {/* Mobile menu dropdown */}
       {isMenuOpen && (
         <div className={`${CONTAINER} pb-4 grid gap-2 text-center`}>
+          {/* Mobile booking button */}
+          <div className="sm:hidden pb-2">
+            <Button 
+              href={WHATSAPP_URL} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn-pulse-strong w-full"
+            >
+              ЗАБРОНИРОВАТЬ
+            </Button>
+          </div>
+          
           <a href="#why" className={`${linkClassName} py-2`} onClick={closeMenu}>
             ПОЧЕМУ МЫ?
           </a>

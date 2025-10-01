@@ -33,6 +33,8 @@ export function Navigation() {
         {/* Logo */}
         <a href="#top" className="flex items-center gap-2 no-underline shrink-0">
           <img 
+            loading="lazy"
+            decoding="async"
             src={LOGO_SRC || placeholderDataURI(220, 220, 'Логотип')} 
             alt="Логотип" 
             className="w-[100px] h-[100px] aspect-square object-contain rounded-xl p-1 shrink-0"

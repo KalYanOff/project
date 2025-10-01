@@ -59,6 +59,8 @@ export function LazyImage({
 export function IconImage({ src, alt, className = "w-12 h-12 rounded-xl" }) {
   return (
     <img
+      loading="lazy"
+      decoding="async"
       src={src}
       alt={alt}
       width={50}

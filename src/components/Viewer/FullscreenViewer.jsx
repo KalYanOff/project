@@ -166,6 +166,8 @@ export function FullscreenViewer({
           style={{ minHeight: '70vh' }}
         >
           <img 
+            loading="lazy"
+            decoding="async"
             src={currentSrc || placeholderSrc} 
             alt={currentAlt} 
             className="max-w-full object-contain" 
@@ -209,6 +211,8 @@ export function FullscreenViewer({
                   aria-label={`Перейти к фото ${thumbnailIndex + 1}`}
                 >
                   <img 
+                    loading="lazy"
+                    decoding="async"
                     src={thumbnail.src} 
                     alt={thumbnail.alt} 
                     className="w-24 h-16 object-cover" 

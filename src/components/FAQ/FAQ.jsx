@@ -363,6 +363,37 @@ cookies/логи - в объёме и сроки, необходимом для 
             <pre className="whitespace-pre-wrap">{fullPersonal}</pre>
           </div>
         </FAQItem>
+
+        <FAQItem question="Есть ли услуга трансфера?">
+          <div className="prose prose-sm max-w-none text-gray-800">
+            <pre className="whitespace-pre-wrap">Мы поможем организовать трансфер от железнодорожного вокзала Туапсе или Горячий Ключ за дополнительную плату. Также можно добраться на рейсовом автобусе — остановка в 200 метрах от гостевого дома.</pre>
+          </div>
+        </FAQItem>
+                <FAQItem question="Можно ли готовить самостоятельно?">
+          <div className="prose prose-sm max-w-none text-gray-800">
+            <pre className="whitespace-pre-wrap">Да, на территории оборудована общая кухня с холодильниками, плитой, микроволновкой, посудой. Также есть мангальная зона для приготовления шашлыков. Продуктовые магазины в 1 минуте ходьбы.</pre>
+          </div>
+        </FAQItem>
+        <FAQItem question="Можно ли остановиться с маленьким ребенком?">
+          <div className="prose prose-sm max-w-none text-gray-800">
+            <pre className="whitespace-pre-wrap">Конечно! Мы специализируемся на семейном отдыхе с детьми любого возраста. Для маленьких гостей у нас предусмотрена детская площадка с качелями и песочницей под навесом.</pre>
+          </div>
+        </FAQItem>
+        <FAQItem question="Какое расстояние до пляжа и какой он?">
+          <div className="prose prose-sm max-w-none text-gray-800">
+            <pre className="whitespace-pre-wrap">Центральный пляж находится всего в 50 метрах от гостевого дома. Пляж песчано-галечный с пологим входом в море, идеально подходит для семей с детьми.</pre>
+          </div>
+        </FAQItem>
+        <FAQItem question="Можно ли привезти с собой домашних животных?">
+          <div className="prose prose-sm max-w-none text-gray-800">
+            <pre className="whitespace-pre-wrap">Просим заранее уточнять возможность размещения с животными по телефону +7(918)192-99-31</pre>
+          </div>
+        </FAQItem>
+        <FAQItem question="Когда мы работаем?">
+          <div className="prose prose-sm max-w-none text-gray-800">
+            <pre className="whitespace-pre-wrap">Гостевой дом «Дельфин» работает для вас круглосуточно, без выходных с мая по октябрь.</pre>
+          </div>
+        </FAQItem>
       </div>
     </section>
   );

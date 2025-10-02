@@ -25,19 +25,20 @@ import { isURL } from '../../utils/helpers';
  * @param {string} slug - Unique room identifier
  * @param {function} onOpenStandalone - Handler for opening fullscreen view
  */
-export function RoomCard({ 
-  title, 
-  subtitle, 
-  price, 
-  oldPrice, 
-  features = [], 
-  images = [], 
-  slug, 
-  onOpenStandalone 
+export function RoomCard({
+  title,
+  subtitle,
+  price,
+  oldPrice,
+  features = [],
+  images = [],
+  slug,
+  onOpenStandalone
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [showCopiedNotification, setShowCopiedNotification] = useState(false);
 
   // Минимальное расстояние свайпа
   const minSwipeDistance = 50;
@@ -80,13 +81,14 @@ export function RoomCard({
   const copyRoomLink = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     const currentUrl = window.location.origin + window.location.pathname;
     const roomUrl = `${currentUrl}#${slug}`;
-    
+
     try {
       await navigator.clipboard.writeText(roomUrl);
-      // Можно добавить уведомление об успешном копировании
+      setShowCopiedNotification(true);
+      setTimeout(() => setShowCopiedNotification(false), 2000);
     } catch (err) {
       // Fallback для старых браузеров
       const textArea = document.createElement('textarea');
@@ -95,6 +97,8 @@ export function RoomCard({
       textArea.select();
       document.execCommand('copy');
       document.body.removeChild(textArea);
+      setShowCopiedNotification(true);
+      setTimeout(() => setShowCopiedNotification(false), 2000);
     }
   };
 
@@ -116,11 +120,18 @@ export function RoomCard({
       <button
         type="button"
         onClick={copyRoomLink}
-        className="absolute z-30 top-3 right-3 text-gray-400 hover:text-[#0023eb] pointer-events-auto bg-white/80 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center" 
+        className="absolute z-30 top-3 right-3 text-gray-400 hover:text-[#0023eb] pointer-events-auto bg-white/80 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center"
         aria-label="Скопировать ссылку на комнату"
       >
         🔗
       </button>
+
+      {/* Уведомление об успешном копировании */}
+      {showCopiedNotification && (
+        <div className="absolute z-40 top-14 right-3 bg-[#0023eb] text-white px-3 py-1.5 rounded-lg text-sm shadow-lg animate-fade-in">
+          Ссылка скопирована!
+        </div>
+      )}
 
       <div className="p-4">
         {/* Image carousel */}
@@ -134,7 +145,7 @@ export function RoomCard({
             src={currentImageSrc} 
             alt={currentImageAlt} 
             label={title}
-            ratio="aspect-[4/3]" 
+            ratio="aspect-video" 
             onClick={() => onOpenStandalone?.(slug, currentImageIndex)} 
           />
 

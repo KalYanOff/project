@@ -87,7 +87,7 @@ export function Gallery({ onOpenFullscreen }) {
               src={imageSrc}
               label={imageLabel}
               alt={imageLabel}
-              ratio="aspect-square"
+              ratio="aspect-video"
               width={1200}
               height={1200}
               onClick={() => onOpenFullscreen?.(index)}

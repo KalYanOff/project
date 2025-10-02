@@ -24,7 +24,7 @@ export function LazyImage({
   src, 
   alt, 
   label = "Фото", 
-  ratio = "aspect-[4/3]", 
+  ratio = "aspect-video", 
   width = 1600, 
   height = 1200, 
   onClick 
